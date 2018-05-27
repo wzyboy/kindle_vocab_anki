@@ -19,9 +19,9 @@ The TSV dictionary could also be used in Kindle Mate.
 
 The TSV Anki notes file has three columns: Stem, Usage, Definition. You can map them to whatever fields you like. The "Usage" and "Definition" column are HTML, so remember to check "Allow HTML in fields" when importing into Anki. The "Usage" column contains all the citations in Kindle Vocabulary Builder, i.e. if you look up a word in different books, the usage sentences will be merged into one single Anki note.
 
-## Recommended Styling
+## Templates and Styling
 
-The templates and styling below makes the rendered Anki card very similar to their counterparts in Kindle Vocabulary Builder.
+The templates and styling below make the rendered Anki cards very similar to their counterparts in Kindle Vocabulary Builder.
 
 ![](./Screenshot_AnkiDroid.png)
 
