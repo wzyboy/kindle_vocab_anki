@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import sqlite3
 import argparse
 import itertools
@@ -76,17 +77,17 @@ def make_notes(vocab, dict_tsv):
         notes.append(note)
 
     if stems_no_def:
-        print(f'WARNING: Some words cannot be found in dictionary:\n{stems_no_def}')
+        print(f'WARNING: Some words cannot be found in dictionary:\n{stems_no_def}', file=sys.stderr)
 
     return notes
 
 
-def output_anki_tsv(notes, anki_tsv, sort=True):
+def output_anki_tsv(notes, output, sort=True):
 
     if sort:
         notes.sort(key=attrgetter('timestamp'), reverse=True)
 
-    with open(anki_tsv, 'w') as f:
+    with output as f:
         for note in pbar(notes):
             line = f'{note.word}\t{note.usage}\t{note.definition}\n'
             f.write(line)
@@ -94,11 +95,11 @@ def output_anki_tsv(notes, anki_tsv, sort=True):
 
 if __name__ == '__main__':
     argp = argparse.ArgumentParser()
-    argp.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d'))
+    argp.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d'), default=datetime.utcfromtimestamp(0))
     argp.add_argument('vocab_db')
     argp.add_argument('dict_tsv')
-    argp.add_argument('anki_tsv')
+    argp.add_argument('anki_tsv', type=argparse.FileType('w'))
     args = argp.parse_args()
-    vocab = get_vocab(args.vocab_db)
+    vocab = get_vocab(args.vocab_db, _since=args.since)
     notes = make_notes(vocab, args.dict_tsv)
     output_anki_tsv(notes, args.anki_tsv)
