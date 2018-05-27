@@ -19,6 +19,8 @@ The TSV Anki notes file has three columns: Stem, Usage, Definition. You can map 
 
 The templates and styling below makes the rendered Anki card very similar to their counterparts in Kindle Vocabulary Builder.
 
+![](./Screenshot_AnkiDroid.png)
+
 Front Template:
 
 ```HTML
@@ -47,7 +49,7 @@ blockquote small:before {
 }
 ```
 
-## Similar Project
+## Similar Projects
 
 - [Kindle2Anki](https://github.com/NdYAG/Kindle2Anki)
 - [Kindle Mate](http://kmate.me/download/)
