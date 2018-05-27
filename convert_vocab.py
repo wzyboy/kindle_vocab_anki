@@ -13,15 +13,6 @@ from collections import namedtuple
 AnkiNote = namedtuple('AnkiNote', 'word usage definition timestamp')
 
 
-def pbar(iterable):
-    try:
-        from tqdm import tqdm
-    except ImportError:
-        return iterable
-    else:
-        return tqdm(iterable)
-
-
 def get_vocab(vocab_db, _since=0):
 
     if isinstance(_since, datetime):
@@ -88,7 +79,7 @@ def output_anki_tsv(notes, output, sort=True):
         notes.sort(key=attrgetter('timestamp'), reverse=True)
 
     with output as f:
-        for note in pbar(notes):
+        for note in notes:
             line = f'{note.word}\t{note.usage}\t{note.definition}\n'
             f.write(line)
 
