@@ -22,9 +22,9 @@ def main(book, dic):
                 str(tag) for tag in _definition
                 if tag.name != 'a'  # anchors do not work in Anki, strip them
             )
-            f.write(f'{stem}\t{definition}')
+            f.write(f'{stem}\t{definition}\n')
             for iform in iforms:
-                f.write(f'{iform}\t{definition}')
+                f.write(f'{iform}\t{definition}\n')
 
 
 if __name__ == '__main__':
