@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import argparse
+
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
@@ -28,9 +30,8 @@ def main(book, dic):
 
 
 if __name__ == '__main__':
-    import sys
-    try:
-        book, dic = sys.argv[1:]
-    except ValueError:
-        raise SystemExit(f'Usage: {__file__} book.html dict.txt')
-    main(book, dic)
+    argp = argparse.ArgumentParser()
+    argp.add_argument('dict_html')
+    argp.add_argument('dict_tsv')
+    args = argp.parse_args()
+    main(args.dict_html, args.dict_tsv)
