@@ -36,7 +36,7 @@ def get_vocab(vocab_db, _since=0):
     return rows
 
 
-def make_notes(vocab, dict_tsv):
+def make_notes(vocab, dict_tsv, include_nodef=False):
 
     # OALD is ~38 MiB for each stem and ~110 MiB for each iform,
     # read it all into a Python dict does not hurt on mordern PCs.
@@ -62,7 +62,10 @@ def make_notes(vocab, dict_tsv):
             definition = dict_db[stem].strip()
         except KeyError:
             stems_no_def.add(stem)
-            definition = None
+            if include_nodef:
+                definition = None
+            else:
+                continue
 
         note = AnkiNote(stem, usage_all, definition, usage_timestamp)
         notes.append(note)
@@ -87,10 +90,11 @@ def output_anki_tsv(notes, output, sort=True):
 if __name__ == '__main__':
     argp = argparse.ArgumentParser()
     argp.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d'), default=datetime.utcfromtimestamp(0))
+    argp.add_argument('--include-nodef', action='store_true', help='include words that have no definitions in dictionary')
     argp.add_argument('vocab_db')
     argp.add_argument('dict_tsv')
     argp.add_argument('anki_tsv', type=argparse.FileType('w'))
     args = argp.parse_args()
     vocab = get_vocab(args.vocab_db, _since=args.since)
-    notes = make_notes(vocab, args.dict_tsv)
+    notes = make_notes(vocab, args.dict_tsv, include_nodef=args.include_nodef)
     output_anki_tsv(notes, args.anki_tsv)
