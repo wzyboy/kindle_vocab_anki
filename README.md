@@ -48,8 +48,7 @@ h1 {
  text-align: center;
 }
 blockquote small:before {
- content: "\A-- ";
- white-space: pre;
+ content: " -- ";
 }
 ```
 
