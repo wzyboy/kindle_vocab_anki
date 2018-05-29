@@ -4,13 +4,15 @@ import argparse
 
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+from bs4 import SoupStrainer
 
 
 def main(dict_html, dict_tsv, expand_iform=False):
 
     print('Parsing markup data, this may take a while ...')
+    parse_only_entry = SoupStrainer('entry')
     with open(dict_html, 'r') as f:
-        soup = BeautifulSoup(f, 'xml')
+        soup = BeautifulSoup(f, 'xml', parse_only=parse_only_entry)
 
     print('Converting HTML dictionary into TSV dictionary ...')
     with open(dict_tsv, 'w') as f:
