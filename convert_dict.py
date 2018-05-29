@@ -8,11 +8,11 @@ from bs4 import BeautifulSoup
 
 def main(dict_html, dict_tsv, expand_iform=False):
 
-    with open(dict_html, 'r') as f:
-        html = f.read()
     print('Parsing markup data, this may take a while ...')
-    soup = BeautifulSoup(html, 'xml')
+    with open(dict_html, 'r') as f:
+        soup = BeautifulSoup(f, 'xml')
 
+    print('Converting HTML dictionary into TSV dictionary ...')
     with open(dict_tsv, 'w') as f:
         for entry in tqdm(soup.find_all('entry')):
             orth, *_definition = entry.contents
