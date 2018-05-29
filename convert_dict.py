@@ -14,9 +14,7 @@ def main(dict_html, dict_tsv, expand_iform=False):
     soup = BeautifulSoup(html, 'xml')
 
     with open(dict_tsv, 'w') as f:
-        for entry in tqdm(soup.html.body.contents):
-            if entry.name != 'entry':
-                continue
+        for entry in tqdm(soup.find_all('entry')):
             orth, *_definition = entry.contents
             stem = orth['value']
             iforms = [i['value'] for i in orth.find_all('iform')]
