@@ -58,3 +58,7 @@ blockquote small:before {
 
 - [Kindle2Anki](https://github.com/NdYAG/Kindle2Anki)
 - [Kindle Mate](http://kmate.me/download/)
+
+## External Links
+
+- [Anki —— 高效的间隔重复记忆软件](https://wzyboy.im/post/1223.html)
