@@ -4,10 +4,12 @@ Kindle Vocabulary Builder is useful, as it collects new words automatically when
 
 ## Usage
 
-1. Use [DeDRM Tools](https://github.com/apprenticeharper/DeDRM_tools) and [KindleUnpack](https://github.com/kevinhendricks/KindleUnpack) to unpack your Kindle dictionary into raw HTML files.
-2. Run `./convert_dict.py mobi7/book.html dict.tsv` to convert the HTML dictionary into a TSV dictionary.
-3. Run `./convert_vocab.py vocab.db dict.tsv notes.tsv` to extract words from Kindle Vocabulary Builder, add definitions to them, and save them into a TSV Anki notes file.
-4. You can now import the `notes.tsv` file into Anki.
+1. Install requirements from `requirements.txt`.
+2. Use [DeDRM Tools](https://github.com/apprenticeharper/DeDRM_tools) to strip DRM if your Kindle dictionary is protected by DRM.
+3. Use [KindleUnpack](https://github.com/kevinhendricks/KindleUnpack) to unpack your Kindle dictionary into raw HTML files.
+4. Run `./convert_dict.py mobi7/book.html dict.tsv` to convert the HTML dictionary into a TSV dictionary.
+5. Run `./convert_vocab.py vocab.db dict.tsv notes.tsv` to extract words from Kindle Vocabulary Builder, add definitions to them, and save them into a TSV Anki notes file.
+6. You can now import the `notes.tsv` file into Anki.
 
 ## File Formats
 
