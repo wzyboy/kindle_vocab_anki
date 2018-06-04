@@ -23,7 +23,7 @@ def main(dict_html, dict_tsv, expand_iform=False):
             definition = ''.join(
                 str(tag) for tag in _definition
                 if tag.name != 'a'  # anchors do not work in Anki, strip them
-            )
+            ).strip()
             f.write(f'{stem}\t{definition}\n')
             if expand_iform:
                 for iform in iforms:
