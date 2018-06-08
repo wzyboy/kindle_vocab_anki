@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
+from ast import literal_eval
 
 from tqdm import tqdm
 from bs4 import BeautifulSoup
@@ -35,8 +36,9 @@ if __name__ == '__main__':
     argp.add_argument('dict_html')
     argp.add_argument('dict_tsv')
     argp.add_argument('--expand-iform', action='store_true')
-    argp.add_argument('--seperator', default='\t')
+    argp.add_argument('--seperator', type=lambda x: literal_eval(f"'''{x}'''"), default='\t')
     args = argp.parse_args()
+
     main(
         args.dict_html, args.dict_tsv,
         expand_iform=args.expand_iform,
