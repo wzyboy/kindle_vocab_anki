@@ -40,7 +40,7 @@ def make_notes(vocab, dict_tsv, include_nodef=False):
 
     # OALD is ~38 MiB for each stem and ~110 MiB for each iform,
     # read it all into a Python dict does not hurt on mordern PCs.
-    with open(dict_tsv, 'r') as f:
+    with open(dict_tsv, 'r', encoding='utf-8') as f:
         dict_db = dict(line.split('\t') for line in f.readlines())
 
     stems_no_def = set()

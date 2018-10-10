@@ -12,11 +12,11 @@ def main(dict_html, dict_tsv, expand_iform=False, sep='\t'):
 
     print('Parsing markup data, this may take a while ...')
     parse_only_entry = SoupStrainer('entry')
-    with open(dict_html, 'r') as f:
+    with open(dict_html, 'r', encoding='utf-8') as f:
         soup = BeautifulSoup(f, 'xml', parse_only=parse_only_entry)
 
     print('Converting HTML dictionary into TSV dictionary ...')
-    with open(dict_tsv, 'w') as f:
+    with open(dict_tsv, 'w', encoding='utf-8') as f:
         for entry in tqdm(soup.find_all('entry')):
             orth, *_definition = entry.contents
             stem = orth['value']
