@@ -16,7 +16,7 @@ AnkiNote = namedtuple('AnkiNote', 'word usage definition timestamp')
 def get_vocab(vocab_db, _since=0):
 
     if isinstance(_since, datetime):
-        since = int(_since.strftime('%s')) * 1000
+        since = int(_since.timestamp()) * 1000
     else:
         since = _since * 1000
 
