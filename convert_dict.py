@@ -18,7 +18,8 @@ def main(dict_html, dict_tsv, expand_iform=False, sep='\t'):
     print('Converting HTML dictionary into TSV dictionary ...')
     with open(dict_tsv, 'w', encoding='utf-8') as f:
         for entry in tqdm(soup.find_all('entry')):
-            orth, *_definition = entry.contents
+            orth = entry.find('orth')
+            _definition = orth.next_siblings
             stem = orth['value']
             iforms = [i['value'] for i in orth.find_all('iform')]
             definition = ''.join(
