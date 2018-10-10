@@ -89,11 +89,11 @@ def output_anki_tsv(notes, output, sort=True):
 
 if __name__ == '__main__':
     argp = argparse.ArgumentParser()
-    argp.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d'), default=datetime.utcfromtimestamp(0))
+    argp.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d'), default=datetime.utcfromtimestamp(86400 * 2))  # Windows workaround
     argp.add_argument('--include-nodef', action='store_true', help='include words that have no definitions in dictionary')
     argp.add_argument('vocab_db')
     argp.add_argument('dict_tsv')
-    argp.add_argument('anki_tsv', type=argparse.FileType('w'))
+    argp.add_argument('anki_tsv', type=argparse.FileType('w', encoding='utf-8'))
     args = argp.parse_args()
     vocab = get_vocab(args.vocab_db, _since=args.since)
     notes = make_notes(vocab, args.dict_tsv, include_nodef=args.include_nodef)
