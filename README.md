@@ -1,3 +1,5 @@
+#I forked this very useful repo for exporting kindle vocab builder words to Anki to make a few fixes. Incorporated fixes according to this issue: https://github.com/wzyboy/kindle_vocab_anki/issues/5 and a fix for incorrectly formatted dictionaries where the definitions for a few words can end up as more than 100 000 characters long. Will also try to make a simple GUI to make the repo easier to use for people (like myself) who aren't used to using command line programs.
+
 # Export Kindle Vocabulary Builder to Anki
 
 Kindle Vocabulary Builder is useful, as it collects new words automatically when you read books. However, it has only two decks: "Learning" and "Mastered". It lacks a lot of functionalities found in professional flashcard software like Anki. Kindle Vocabulary Builder stores all the data in `/system/vocabulary/vocab.db` SQLite3 database. This repo contains helpers to extract words from Kindle Vocabulary Builder and import them into Anki.
