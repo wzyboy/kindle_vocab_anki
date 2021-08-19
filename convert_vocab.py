@@ -90,7 +90,7 @@ def output_anki_tsv(notes, output, sort=True):
     print("\n")
 
 
-def main(vocab_db, dict_tsv, notes):
+def main(vocab_db, dict_tsv):
     #argp = argparse.ArgumentParser()
     #argp.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d'), default=datetime.utcfromtimestamp(86400 * 2))  # Windows workaround
     #argp.add_argument('--include-nodef', action='store_true', help='include words that have no definitions in dictionary')

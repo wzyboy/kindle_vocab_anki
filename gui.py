@@ -10,7 +10,7 @@ root = Tk()
 root.title("Kindle to Anki exporter")
 root.geometry("600x150")
 
-
+os.chdir(os.path.dirname(__file__))
 
 def saveDict():
     saveDict.dictPath = filedialog.askopenfilename(initialdir="/Users/emileberhard/Desktop", title="Select Dictionary File", filetypes=(("HTML files", "*.html"),))
@@ -28,11 +28,12 @@ def convert_vocabulary():
 
 def startConvtoAnki(dictPath, DBPath):
     try:
-        #convert_dict.main(dictPath, "dict.tsv")
+        convert_dict.main(dictPath, "dict.tsv")
         dict_tsv = "dict.tsv"
-        notes_tsv = open("notes.tsv", "w")
 
-        convert_vocab.main(saveDB.DBPath, dict_tsv, notes_tsv)
+        convert_vocab.main(saveDB.DBPath, dict_tsv)
+
+        print("Conversion complete! \nanki.tsv file is ready to be imported into Anki.")
     except Exception as e:
         raise
 
@@ -43,6 +44,7 @@ my_label2.pack()
 vocabChooser = Button(root, text="Choose Vocab File (.DB)", command=saveDB).pack()
 dictChooser = Button(root, text="Choose Dictionary File (.HTML)", command=saveDict).pack()
 startButton = Button(root, text="Start", command=lambda:startConvtoAnki(saveDict.dictPath, saveDB.DBPath)).pack()
+
 
 
 root.mainloop()
