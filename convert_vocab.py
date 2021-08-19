@@ -53,7 +53,7 @@ def make_notes(vocab, dict_tsv, include_nodef=False):
         for entry in entries:
             word = entry['word']
             _usage = entry['usage'].replace(word, f'<strong>{word}</strong>').strip()
-            usage = f'<blockquote>{_usage}<small>{entry["title"]}</small></blockquote>'
+            usage = f'<blockquote>{_usage}<br><br><small>{entry["title"]}</small></blockquote><br>'
             usage_all += usage
             usage_timestamp = entry['timestamp']
 
@@ -71,7 +71,7 @@ def make_notes(vocab, dict_tsv, include_nodef=False):
         notes.append(note)
 
     if stems_no_def:
-        print(f'WARNING: Some words cannot be found in dictionary:\n{stems_no_def}', file=sys.stderr)
+        print(f'\nWARNING: Some words cannot be found in dictionary:\n{stems_no_def}', file=sys.stderr)
 
     return notes
 
@@ -83,8 +83,11 @@ def output_anki_tsv(notes, output, sort=True):
 
     with output as f:
         for note in notes:
+            if len(note.definition) > 100000:
+                print(f'\nWARNING: Word: "{note.word}" at index: {notes.index(note)} is too long ({len(note.definition)} characters). The cause is likely incorrect html formatting. Please check the html structure for this word in dictionary. Skipping for now... ')
             line = f'{note.word}\t{note.usage}\t{note.definition}\n'
             f.write(line)
+    print("\n")
 
 
 if __name__ == '__main__':
